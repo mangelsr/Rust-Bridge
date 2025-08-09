@@ -248,3 +248,13 @@ Ownership + Borrowing
 -> Memory safety without a garbage collector
 -> Safe concurrency
 -> High performance
+
+### Traits
+
+Interfaces like, not an exact interface like in other OO languages
+
+## Program Optimizations
+
+#### `file_buffer.lines()`
+
+This line of code allocate a memory space per line and it's done per line

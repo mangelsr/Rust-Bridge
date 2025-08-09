@@ -20,20 +20,23 @@ fn main() {
     }
 }
 
-fn use_wordlist(file: File, hash: String) {
+fn use_wordlist(wordlist_file: File, target_hash: String) {
     // todo!(); // Usefull macro to set todos in code
-    let file_buffer = BufReader::new(file);
-    let hash_bytes = hex::decode(hash).unwrap();
+    let mut file_buffer = BufReader::new(wordlist_file);
+    let hash_bytes = hex::decode(target_hash).unwrap();
 
-    for line in file_buffer.lines() {
-        let Ok(line) = line else {
+    // Memory re-use version
+    let mut line = String::new();
+
+    loop {
+        let Ok(bytes_read) = file_buffer.read_line(&mut line) else {
+            line.clear();
             continue;
         };
 
-        let line = line.trim();
-
-        if line.is_empty() {
-            continue;
+        if bytes_read == 0 {
+            println!("Password not found");
+            return;
         }
 
         let mut hasher = Md5::new();
@@ -44,7 +47,7 @@ fn use_wordlist(file: File, hash: String) {
             println!("Password found; is {line}");
             return;
         }
-    }
 
-    println!("Password not found");
+        line.clear();
+    }
 }
