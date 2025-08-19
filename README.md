@@ -258,3 +258,21 @@ Interfaces like, not an exact interface like in other OO languages
 #### `file_buffer.lines()`
 
 This line of code allocate a memory space per line and it's done per line
+
+### Polimorphism
+
+Rust allow polimorphism without the use of virtual tables used on run time, but you pay it at compile time
+
+### Modules
+
+All in rust is private by default
+
+### Null safety
+
+Rust has null safety built in
+
+### Printing
+
+Python Equivalent => Rust Equivalent
+`__str__` => `trait Display`
+`__repr__` => `trait Debug`
